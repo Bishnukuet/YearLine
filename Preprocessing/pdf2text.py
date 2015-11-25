@@ -5,9 +5,12 @@ from pdfminer.pdfpage import PDFPage
 from cStringIO import StringIO
 import os as OS
 
+#following Variables are mean to form input and output path
 OutputDir="E:\NLP\Data Sets\NLP DataBooks\PDFs" #  your final .txt files are here.
 InputDir="E:\NLP\Data Sets\NLP DataBooks\InputBooks"  # this path contains your  book folders
 YourName="Bishnu"  # write your first Name Please Make sure first letter is Capital. This is obligatory
+BooksCount=1
+
 BooksPath=list()
 
 def getallPDFs(Path):
@@ -49,11 +52,6 @@ def convert_pdf_to_txt(path,outpath):
     return text
 
 #convert_pdf_to_txt("E:\NLP\NLTK Project\LDA.pdf")
-
-'''
-
-'''
-BooksCount=1
 
 if  not OS.path.exists(OutputDir):
      OS.makedirs(OutputDir)
