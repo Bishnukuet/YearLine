@@ -6,11 +6,12 @@ from cStringIO import StringIO
 import os as OS
 
 #following Variables are mean to form input and output path
-OutputDir="E:\NLP\Data Sets\NLP DataBooks\PDFs" #  your final .txt files are here.
+OutputDir="E:\NLP\Data Sets\NLP DataBooks\PDFs\DF" #  your final .txt files are here.
 InputDir="E:\NLP\Data Sets\NLP DataBooks\InputBooks"  # this path contains your  book folders
-YourName="Bishnu"  # write your first Name Please Make sure first letter is Capital. This is obligatory
+YourName="BishnuDF" # write your first Name Please Make sure first letter is Capital. This is obligatory
 BooksCount=1
-
+Threshold=1
+#251,565,677,681,697,716,792,803,1001,1025,1051,52,53
 BooksPath=list()
 
 def getallPDFs(Path):
@@ -57,11 +58,20 @@ if  not OS.path.exists(OutputDir):
      OS.makedirs(OutputDir)
 getallPDFs(InputDir)
 print 'Total Books:',len(BooksPath)
+print BooksPath[Threshold]
+
+count=1
 for PDFs in BooksPath:
+    if BooksCount >=Threshold:
+        print BooksPath[BooksCount]
+        outfile=YourName+'_'+ str(BooksCount)+'.txt'
+        BooksCount=BooksCount+1
+        outpath=OS.path.join(OutputDir,outfile)
+        try:
+            convert_pdf_to_txt(PDFs,outpath)
+            print 'text is ready:', outfile
+        except:
+            BooksCount=BooksCount+1
 
-    outfile=YourName+'_'+ str(BooksCount)+'.txt'
-    BooksCount=BooksCount+1
-    outpath=OS.path.join(OutputDir,outfile)
-    convert_pdf_to_txt(PDFs,outpath)
-    print 'text is ready:', outfile
-
+    else:
+        BooksCount=BooksCount+1
